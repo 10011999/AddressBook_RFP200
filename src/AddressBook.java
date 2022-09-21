@@ -1,18 +1,16 @@
-import com.sun.org.apache.bcel.internal.generic.FieldInstruction;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
     public static AddressBook addressBook = new AddressBook();
+    ArrayList<Person> person = new ArrayList<>();
 
-    //Person person = new Person();
     public static void main(String[] args) {
         System.out.println("Welcome To Address Book");
         int choice = 0;
-        //AddressBook addressBook = new AddressBook();
         do {
-            System.out.println("Main menu: \n1.Add Person \n2.Delete Person\n3.Display Person\n4.Update Person.\n5.Exit");
+            System.out.println("Main menu: \n1.Add Person \n2.Edit Person\n3.Delete Person\n4.Display Person.\n5.Exit");
             choice = sc.nextInt();
             addressBook.getChoice(choice);
         } while (choice != 5);
@@ -21,33 +19,94 @@ public class AddressBook {
     public void getChoice(int choice) {
         switch (choice) {
             case 1:
-                addressBook.add();
-                break;
+                addressBook.addPerson();
             case 2:
+                addressBook.editPerson();
             case 3:
             case 4:
+                addressBook.display();
             case 5:
-                System.out.println("Not Any Details");
+                System.out.println("Details Not Present");
         }
     }
 
-
-    public void add() {
+    public void addPerson() {
+        Person person1 = new Person();
         System.out.println("Enter a First Name");
-        String firstName = sc.nextLine();
+        person1.setFirstName(sc.nextLine());
         System.out.println("Enter a Last Nmae");
-        String lastName = sc.nextLine();
+        person1.setLastName(sc.nextLine());
         System.out.println("Enter a Address ");
-        String address = sc.nextLine();
+        person1.setAddress(sc.nextLine());
         System.out.println("Enter a city");
-        String city = sc.nextLine();
+        person1.setCity(sc.nextLine());
         System.out.println("Enter a Email");
-        String email = sc.nextLine();
+        person1.setEmail(sc.nextLine());
         System.out.println("Enter a zip");
-        int zip = sc.nextInt();
+        person1.setZip(sc.nextInt());
         System.out.println("Enter a Phone Number");
-        long phoneNumber = sc.nextLong();
-        Person person = new Person(firstName, lastName, address, city, email, zip, phoneNumber);
-        System.out.println(person);
+        person1.setPhoneNumber(sc.nextLong());
+        person.add(person1);
+        System.out.println("Person Details Added Successfully");
+    }
+
+    public void editPerson() {
+        if (person.size() > 0) {
+            String newFirstName;
+            System.out.println("Enter a First Name");
+            newFirstName = sc.nextLine();
+            for (int i = 0; i < person.size(); i++) {
+                if (person.get(i).getFirstName().equals(newFirstName)) {
+                    System.out.println("Enter the edit: \n1.First Name\n2.Last Name\n3.Address\n4.City\n5.Email\n6.Zip\n7.Phone Number");
+                    int input = sc.nextInt();
+                    switch (input) {
+
+                        case 1:
+                            System.out.println("Enter New First Nmae");
+                            person.get(i).setFirstName(sc.next());
+                            break;
+                        case 2:
+                            System.out.println("Enter New Last Nmae");
+                            person.get(i).setLastName(sc.next());
+                            break;
+                        case 3:
+                            System.out.println("Enter New Address Nmae");
+                            person.get(i).setAddress(sc.next());
+                            break;
+                        case 4:
+                            System.out.println("Enter New City Nmae");
+                            person.get(i).setCity(sc.next());
+                            break;
+                        case 5:
+                            System.out.println("Enter New Email");
+                            person.get(i).setEmail(sc.next());
+                            break;
+                        case 6:
+                            System.out.println("Enter New Zip");
+                            person.get(i).setZip(sc.nextInt());
+                            break;
+                        case 7:
+                            System.out.println("Enter New Phone Number");
+                            person.get(i).setPhoneNumber(sc.nextLong());
+                            break;
+                        default:
+                            System.out.println("Not Details");
+                    }
+                    System.out.println("Person Edit Successfully");
+                } else
+                    System.out.println("Not Any Detils");
+            }
+        }
+    }
+    public void display(){
+        if (person.size()>0){
+            for (Person itr : person){
+                System.out.println(itr);
+            }
+        }else {
+            System.out.println("Person Details");
+        }
     }
 }
+
+
