@@ -20,11 +20,16 @@ public class AddressBook {
         switch (choice) {
             case 1:
                 addressBook.addPerson();
+                break;
             case 2:
                 addressBook.editPerson();
+                break;
             case 3:
+                addressBook.deletePersonDetails();
+                break;
             case 4:
                 addressBook.display();
+                break;
             case 5:
                 System.out.println("Details Not Present");
         }
@@ -34,7 +39,7 @@ public class AddressBook {
         Person person1 = new Person();
         System.out.println("Enter a First Name");
         person1.setFirstName(sc.nextLine());
-        System.out.println("Enter a Last Nmae");
+        System.out.println("Enter a Last Name");
         person1.setLastName(sc.nextLine());
         System.out.println("Enter a Address ");
         person1.setAddress(sc.nextLine());
@@ -98,12 +103,29 @@ public class AddressBook {
             }
         }
     }
-    public void display(){
-        if (person.size()>0){
-            for (Person itr : person){
+
+    public void deletePersonDetails() {
+        if (person.size() > 0) {
+            System.out.println("Enter a First Nmae");
+            String delName = sc.nextLine();
+            for (int i = 0; i < person.size(); i++) {
+                if (person.get(i).getFirstName().equals(delName)) {
+                    Person person1 = person.get(i);
+                    person.remove(person1);
+                    System.out.println("Person Details Delete Successfully");
+                } else {
+                    System.out.println("Not contact delete");
+                }
+            }
+        }
+    }
+
+    public void display() {
+        if (person.size() > 0) {
+            for (Person itr : person) {
                 System.out.println(itr);
             }
-        }else {
+        } else {
             System.out.println("Person Details");
         }
     }
