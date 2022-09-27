@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
     public static AddressBook addressBook = new AddressBook();
     ArrayList<Person> person = new ArrayList<>();
+    //public static HashMap<String, ArrayList<Person>> address = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("Welcome To Address Book");
@@ -38,28 +40,36 @@ public class AddressBook {
     public void addPerson() {
         Person person1 = new Person();
         System.out.println("Enter a First Name");
-        person1.setFirstName(sc.nextLine());
+        person1.setFirstName(sc.next());
+
         System.out.println("Enter a Last Name");
-        person1.setLastName(sc.nextLine());
+        person1.setLastName(sc.next());
+
         System.out.println("Enter a Address ");
-        person1.setAddress(sc.nextLine());
+        person1.setAddress(sc.next());
+
         System.out.println("Enter a city");
-        person1.setCity(sc.nextLine());
+        person1.setCity(sc.next());
+
         System.out.println("Enter a Email");
-        person1.setEmail(sc.nextLine());
+        person1.setEmail(sc.next());
+
         System.out.println("Enter a zip");
         person1.setZip(sc.nextInt());
+
         System.out.println("Enter a Phone Number");
         person1.setPhoneNumber(sc.nextLong());
+
         person.add(person1);
         System.out.println("Person Details Added Successfully");
+        
     }
 
     public void editPerson() {
         if (person.size() > 0) {
             String newFirstName;
             System.out.println("Enter a First Name");
-            newFirstName = sc.nextLine();
+            newFirstName = sc.next();
             for (int i = 0; i < person.size(); i++) {
                 if (person.get(i).getFirstName().equals(newFirstName)) {
                     System.out.println("Enter the edit: \n1.First Name\n2.Last Name\n3.Address\n4.City\n5.Email\n6.Zip\n7.Phone Number");
@@ -107,14 +117,14 @@ public class AddressBook {
     public void deletePersonDetails() {
         if (person.size() > 0) {
             System.out.println("Enter a First Nmae");
-            String delName = sc.nextLine();
+            String delName = sc.next();
             for (int i = 0; i < person.size(); i++) {
                 if (person.get(i).getFirstName().equals(delName)) {
                     Person person1 = person.get(i);
                     person.remove(person1);
-                    System.out.println("Person Details Delete Successfully");
+                    System.out.println("Person  Delete Successfully");
                 } else {
-                    System.out.println("Not contact delete");
+                    System.out.println();
                 }
             }
         }
