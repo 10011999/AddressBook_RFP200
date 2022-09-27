@@ -6,7 +6,7 @@ public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
     public static AddressBook addressBook = new AddressBook();
     ArrayList<Person> person = new ArrayList<>();
-    //public static HashMap<String, ArrayList<Person>> address = new HashMap<>();
+    public static HashMap<String, ArrayList<Person>> address = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("Welcome To Address Book");
@@ -62,7 +62,19 @@ public class AddressBook {
 
         person.add(person1);
         System.out.println("Person Details Added Successfully");
-        
+        System.out.println("Enter a book name ");
+        String bookName = sc.next();
+
+        if (address.containsKey(bookName)) {
+            ArrayList<Person> person = address.get(bookName);
+            address.put(bookName, person);
+            System.out.println("New Contact add " + bookName);
+        } else {
+            ArrayList<Person> person = address.get(bookName);
+            address.put(bookName, person);
+            System.out.println(bookName + " created ");
+            System.out.println("New Contact add " + bookName);
+        }
     }
 
     public void editPerson() {
